@@ -1,1 +1,4 @@
 .idea
+target/
+glove.txt
+/src/main/resources/application-local.yml

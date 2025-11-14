@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>CopilotController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ff79c6;}
+.s1 { color: #f8f8f2;}
+.s2 { color: #f1fa8c;}
+</style>
+</head>
+<body bgcolor="#282a36">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+CopilotController.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.demo.infrastructure.controller;</span>
+
+<span class="s0">import </span><span class="s1">com.example.demo.aplication.usecase.FindAllPagesUseCase;</span>
+<span class="s0">import </span><span class="s1">com.example.demo.aplication.usecase.SearchSimilarPagesUseCase;</span>
+<span class="s0">import </span><span class="s1">com.example.demo.aplication.usecase.VectorizePagesUseCase;</span>
+<span class="s0">import </span><span class="s1">com.example.demo.domain.model.ConfluencePage;</span>
+<span class="s0">import </span><span class="s1">com.example.demo.domain.model.CopilotQuery;</span>
+<span class="s0">import </span><span class="s1">com.example.demo.domain.model.VectorSearchResult;</span>
+<span class="s0">import </span><span class="s1">com.example.demo.domain.model.VectorizedPage;</span>
+<span class="s0">import </span><span class="s1">org.springframework.web.bind.annotation.GetMapping;</span>
+<span class="s0">import </span><span class="s1">org.springframework.web.bind.annotation.PostMapping;</span>
+<span class="s0">import </span><span class="s1">org.springframework.web.bind.annotation.RequestBody;</span>
+<span class="s0">import </span><span class="s1">org.springframework.web.bind.annotation.RequestMapping;</span>
+<span class="s0">import </span><span class="s1">org.springframework.web.bind.annotation.RestController;</span>
+
+<span class="s0">import </span><span class="s1">java.util.List;</span>
+
+<span class="s1">@RestController</span>
+<span class="s1">@RequestMapping(</span><span class="s2">&quot;/copilot/pages&quot;</span><span class="s1">)</span>
+<span class="s0">public class </span><span class="s1">CopilotController {</span>
+
+    <span class="s0">private final </span><span class="s1">FindAllPagesUseCase findAllPagesUseCase;</span>
+    <span class="s0">private final </span><span class="s1">VectorizePagesUseCase vectorizePagesUseCase;</span>
+    <span class="s0">private final </span><span class="s1">SearchSimilarPagesUseCase searchSimilarPagesUseCase;</span>
+
+    <span class="s0">public </span><span class="s1">CopilotController(</span>
+        <span class="s1">FindAllPagesUseCase findAllPagesUseCase,</span>
+        <span class="s1">VectorizePagesUseCase vectorizePagesUseCase,</span>
+        <span class="s1">SearchSimilarPagesUseCase searchSimilarPagesUseCase</span>
+    <span class="s1">) {</span>
+        <span class="s0">this</span><span class="s1">.findAllPagesUseCase = findAllPagesUseCase;</span>
+        <span class="s0">this</span><span class="s1">.vectorizePagesUseCase = vectorizePagesUseCase;</span>
+        <span class="s0">this</span><span class="s1">.searchSimilarPagesUseCase = searchSimilarPagesUseCase;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@GetMapping</span>
+    <span class="s0">public </span><span class="s1">List&lt;ConfluencePage&gt; getAllPages() {</span>
+        <span class="s0">return </span><span class="s1">findAllPagesUseCase.execute();</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@GetMapping(</span><span class="s2">&quot;/vectorized-pages&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">List&lt;VectorizedPage&gt; getVectorizedPages() {</span>
+        <span class="s0">return </span><span class="s1">vectorizePagesUseCase.execute();</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@PostMapping(</span><span class="s2">&quot;/query&quot;</span><span class="s1">)</span>
+    <span class="s0">public </span><span class="s1">List&lt;VectorSearchResult&gt; query(@RequestBody CopilotQuery query) {</span>
+        <span class="s0">return </span><span class="s1">searchSimilarPagesUseCase.execute(query.getQuestion());</span>
+    <span class="s1">}</span>
+
+
+<span class="s1">}</span></pre>
+</body>
+</html>

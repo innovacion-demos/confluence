@@ -1,0 +1,203 @@
+openapi: 3.0.0
+info:
+  title: Confluence Agent API
+  version: 1.1.0
+  description: API para vectorizar y consultar páginas de Confluence (formato MCP)
+servers:
+  - url: http://localhost:8080
+paths:
+  /copilot/pages:
+    get:
+      summary: Obtener todas las páginas
+      description: Devuelve todas las páginas de Confluence (sin vectorizar)
+      responses:
+        '200':
+          description: Lista de páginas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ConfluencePage'
+  /copilot/pages/vectorized-pages:
+    get:
+      summary: Vectorizar páginas
+      description: Vectoriza y guarda (upsert) todas las páginas en Qdrant.
+      responses:
+        '200':
+          description: Lista de páginas vectorizadas devueltas tras procesar
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VectorizedPage'
+  /copilot/pages/query:
+    post:
+      summary: Buscar páginas similares (formato MCP)
+      description: Devuelve resultados similares con metadatos MCP.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CopilotQuery'
+      responses:
+        '200':
+          description: Respuesta MCP de resultados
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/McpQueryResponse'
+        '400':
+          description: Petición inválida
+  /copilot/pages/answer:
+    post:
+      summary: Generar respuesta tipo chatbot (MCP)
+      description: Combina fragmentos de las páginas más similares y devuelve respuesta enriquecida.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CopilotQuery'
+      responses:
+        '200':
+          description: Respuesta MCP con respuesta sintetizada y fuentes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/McpAnswerResponse'
+        '400':
+          description: Petición inválida
+  /copilot/pages/raw:
+    get:
+      summary: Scroll de puntos en Qdrant
+      description: Devuelve puntos crudos (payload básico) desde la colección knowpilot.
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 20
+          description: Número máximo de puntos a devolver
+      responses:
+        '200':
+          description: Lista parcial de puntos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VectorizedPage'
+  /copilot/pages/diagnostics:
+    get:
+      summary: Diagnóstico de colección
+      description: Devuelve conteo y muestra de IDs almacenados.
+      responses:
+        '200':
+          description: Información de diagnóstico
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Diagnostics'
+components:
+  schemas:
+    ConfluencePage:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        url:
+          type: string
+    VectorizedPage:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+        url:
+          type: string
+        vector:
+          type: array
+          items:
+            type: number
+    CopilotQuery:
+      type: object
+      required: [question]
+      properties:
+        question:
+          type: string
+    VectorSearchResult:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+        content:
+          type: string
+        score:
+          type: number
+    McpQueryResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: query_results
+        query:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/VectorSearchResult'
+        meta:
+          $ref: '#/components/schemas/McpMeta'
+    McpAnswerResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          example: answer
+        question:
+          type: string
+        answer:
+          type: string
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/VectorSearchResult'
+        meta:
+          $ref: '#/components/schemas/McpMeta'
+    McpMeta:
+      type: object
+      properties:
+        generated_at:
+            type: string
+            format: date-time
+        engine:
+            type: string
+        count:
+            type: integer
+            description: Total de items (query) o puede omitirse en answer
+        source_count:
+            type: integer
+            description: Cantidad de fuentes en respuesta (answer)
+    Diagnostics:
+      type: object
+      properties:
+        count:
+          type: integer
+        sampleIds:
+          type: array
+          items:
+            type: string
