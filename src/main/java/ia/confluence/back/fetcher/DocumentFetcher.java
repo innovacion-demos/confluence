@@ -1,4 +1,4 @@
-package ia.confluence.back.infra;
+package ia.confluence.back.fetcher;
 
 import reactor.core.publisher.Mono;
 

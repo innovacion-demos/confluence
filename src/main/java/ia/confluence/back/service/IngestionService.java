@@ -1,6 +1,6 @@
 package ia.confluence.back.service;
 
-import ia.confluence.back.infra.DocumentFetcher;
+import ia.confluence.back.fetcher.DocumentFetcher;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

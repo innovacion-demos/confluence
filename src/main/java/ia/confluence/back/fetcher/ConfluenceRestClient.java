@@ -1,4 +1,4 @@
-package ia.confluence.back.infra;
+package ia.confluence.back.fetcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ia.confluence.back.config.ConfluenceProperties;
