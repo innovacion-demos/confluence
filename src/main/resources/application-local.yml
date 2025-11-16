@@ -1,0 +1,11 @@
+confluence:
+  email: zelzeusyt2002@gmail.com         # ← Tu email de Atlassian
+  token:  ATATT3xFfGF0KQ5Zw0aPG21Sevd5zcRA3vOrr5i57axteWxR6JB2ujYnwqCii2fupA82q1VWfSxHj7J2T6cl5x8NRRFvw7xSm9mnwqkx-O7TS3vYtBMoNOC4j7i8lvqVao4RgoOP-IHia_wNNZ1GI76YBhACk7c7ChhJavf8pK5pVcWlfwOFcAA=0E143FC5       # ← El token que generaste en id.atlassian.com
+  spaceKey: DocuDemo                  # ← El espacio donde están tus páginas
+  baseUrl: https://zelzeusyt2002.atlassian.net/wiki/rest/api/content
+
+
+qdrant:
+  baseUrl: http://localhost:6333
+  apiKey: ""
+  vectorSize: 100
