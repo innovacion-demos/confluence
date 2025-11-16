@@ -8,10 +8,10 @@
         <version>3.5.7</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>ia.confluence</groupId>
-    <artifactId>back</artifactId>
+    <groupId>com.example</groupId>
+    <artifactId>demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>back</name>
+    <name>demoConfluence</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>21</java.version>

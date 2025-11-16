@@ -1,4 +1,4 @@
-package ia.confluence.back.config;
+package com.example.demo.config;
 
 import lombok.Getter;
 import lombok.Setter;

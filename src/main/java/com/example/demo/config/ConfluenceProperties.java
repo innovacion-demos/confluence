@@ -1,4 +1,4 @@
-package ia.confluence.back.config;
+package com.example.demo.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

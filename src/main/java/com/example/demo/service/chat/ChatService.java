@@ -1,4 +1,4 @@
-package ia.confluence.back.service;
+package com.example.demo.service.chat;
 
 import reactor.core.publisher.Flux;
 

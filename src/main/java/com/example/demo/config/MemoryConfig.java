@@ -1,4 +1,4 @@
-package ia.confluence.back.config;
+package com.example.demo.config;
 
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;

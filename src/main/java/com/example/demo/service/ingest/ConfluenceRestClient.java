@@ -1,14 +1,15 @@
-package ia.confluence.back.fetcher;
+package com.example.demo.service.ingest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import ia.confluence.back.config.ConfluenceProperties;
-import java.util.Base64;
-import java.util.List;
-import java.util.stream.StreamSupport;
+import com.example.demo.config.ConfluenceProperties;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+
+import java.util.Base64;
+import java.util.List;
+import java.util.stream.StreamSupport;
 
 // Importa clases de Jackson (JsonNode) para parsear la respuesta rápida
 

@@ -1,4 +1,4 @@
-package ia.confluence.back.service;
+package com.example.demo.service.chat;
 
 import org.jsoup.Jsoup;
 import org.springframework.stereotype.Component;

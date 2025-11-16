@@ -1,4 +1,4 @@
-package ia.confluence.back.service;
+package com.example.demo.service.chat;
 
 import java.util.Set;
 import org.springframework.ai.chat.prompt.PromptTemplate;

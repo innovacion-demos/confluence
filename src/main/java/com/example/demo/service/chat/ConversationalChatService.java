@@ -1,8 +1,8 @@
-package ia.confluence.back.service;
+package com.example.demo.service.chat;
 
-import static ia.confluence.back.service.ConversationalChatConstants.*;
+import static com.example.demo.service.chat.ConversationalChatConstants.*;
 
-import ia.confluence.back.config.RagProperties;
+import com.example.demo.config.RagProperties;
 import java.util.*;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
@@ -16,13 +16,11 @@ import org.springframework.ai.document.Document;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
 @Service
-@Primary
 @AllArgsConstructor
 public class ConversationalChatService implements ChatService {
   private static final Logger log = LoggerFactory.getLogger(ConversationalChatService.class);
