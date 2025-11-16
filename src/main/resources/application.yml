@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: confluence-rag
+
+  # Configuración de Spring AI
+  ai:
+    # 1. Configuración del almacén vectorial (Qdrant)
+    vectorstore:
+      qdrant:
+        host: localhost
+        port: 6334 # Usamos gRPC por defecto
+        collection-name: confluence_knowledge
+        initialize-schema: true
+
+    # 2. Configuración del modelo de lenguaje (Ollama)
+    ollama:
+      # URL base de tu servidor Ollama (el que está en Docker)
+      base-url: http://localhost:11434
+      # Configuración para el modelo de CHAT (el que responde preguntas)
+      chat:
+        model: llama3:8b-instruct-q4_K_M # Asegúrate de que este modelo está descargado
+        options:
+          temperature: 0.7 # Controla la creatividad (0.0 es más determinista)
+          top-k: 50
+      # Configuración para el modelo de EMBEDDINGS (el que vectoriza el texto)
+      # BUENA PRÁCTICA: Es crucial separar esto. Usar un modelo especializado en embeddings
+      # da mejores resultados en la búsqueda de similitud.
+      embedding:
+        model: nomic-embed-text # Asegúrate de que este modelo está descargado
+
+# Configuración de tu aplicación (Confluence)
+app:
+  confluence:
+    baseUrl: https://zelzeusyt2002.atlassian.net/wiki
+    username: ${CONFLUENCE_USERNAME}
+    api-token: ${CONFLUENCE_API_TOKEN}
+    spaceKey: DocuDemo
+
+# Parámetros RAG externalizados
+rag:
+  similarity-threshold: 0.5
+  max-history-chars: 3000
+  max-history-messages: 20
+  max-query-chars: 500
+  max-context-docs: 3
+  max-context-chars: 3500
+  context-join-separator: "\n\n---\n\n"
+  deduplicate-by-source: true

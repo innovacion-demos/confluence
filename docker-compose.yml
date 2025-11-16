@@ -1,0 +1,13 @@
+services:
+  # Servicio para la base de datos vectorial
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333" # Puerto HTTP
+      - "6334:6334" # Puerto gRPC
+    volumes:
+      - ./qdrant_data:/qdrant/storage # Persistir los datos de Qdrant
+
+# Definimos un volumen nombrado para que Docker gestione los datos de Ollama
+volumes:
+  qdrant_data:
