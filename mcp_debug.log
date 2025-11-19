@@ -1,0 +1,25 @@
+[DEBUG] Servidor MCP iniciando...
+Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: EOF while parsing a value at line 2 column 0 [type=json_invalid, input_value='\n', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid
+{"method":"notifications/message","params":{"level":"error","logger":"mcp.server.exception_handler","data":"Internal Server Error"},"jsonrpc":"2.0"}
+Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: EOF while parsing a value at line 2 column 0 [type=json_invalid, input_value='\n', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid
+{"method":"notifications/message","params":{"level":"error","logger":"mcp.server.exception_handler","data":"Internal Server Error"},"jsonrpc":"2.0"}
+Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: EOF while parsing a value at line 2 column 0 [type=json_invalid, input_value='\n', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid
+{"method":"notifications/message","params":{"level":"error","logger":"mcp.server.exception_handler","data":"Internal Server Error"},"jsonrpc":"2.0"}
+Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: EOF while parsing a value at line 2 column 0 [type=json_invalid, input_value='\n', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid
+{"method":"notifications/message","params":{"level":"error","logger":"mcp.server.exception_handler","data":"Internal Server Error"},"jsonrpc":"2.0"}
+Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: EOF while parsing a value at line 2 column 0 [type=json_invalid, input_value='\n', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid
+{"method":"notifications/message","params":{"level":"error","logger":"mcp.server.exception_handler","data":"Internal Server Error"},"jsonrpc":"2.0"}
+Received exception from stream: 1 validation error for JSONRPCMessage
+  Invalid JSON: EOF while parsing a value at line 2 column 0 [type=json_invalid, input_value='\n', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid
+{"method":"notifications/message","params":{"level":"error","logger":"mcp.server.exception_handler","data":"Internal Server Error"},"jsonrpc":"2.0"}
