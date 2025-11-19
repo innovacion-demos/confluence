@@ -229,4 +229,8 @@ public class ConversationalChatService implements ChatService {
     if (s.isEmpty()) return original;
     return s;
   }
+
+  public VectorStore getVectorStore() {
+    return vectorStore;
+  }
 }
